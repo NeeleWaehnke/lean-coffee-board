@@ -1,6 +1,22 @@
-export default function Form() {
+//import { useState } from "react";
+
+export default function Form({ onAddCard }) {
+  //   const [text, setText] = useState("");
+  //   const [author, setAuthor] = useState("");
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const form = event.target.elements;
+    const data = {
+      topic: form.topic.value,
+      author: form.author.value,
+    };
+    onAddCard(data);
+    event.target.reset();
+  }
+
   return (
-    <form action="">
+    <form onSubmit={handleSubmit}>
       <label htmlFor="topic"></label>
       <input
         type="text"

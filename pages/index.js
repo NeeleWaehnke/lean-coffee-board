@@ -1,13 +1,19 @@
 import Header from "../components/Header";
-import Card from "../components/Card";
+import CardList from "../components/Card-List";
 import Form from "../components/Form";
+import { useState } from "react";
 
 export default function HomePage() {
+  const [cards, setCards] = useState();
+  function handleAddCard(newCard) {
+    setCards([...newCard, ...cards]);
+  }
+
   return (
     <>
       <Header />
-      <Card />
-      <Form />
+      <CardList />
+      <Form onAddCard={handleAddCard} />
     </>
   );
 }
