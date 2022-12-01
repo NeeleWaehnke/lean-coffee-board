@@ -10,6 +10,6 @@ export default function Header() {
 
 const StyledHeader = styled.header`
   text-align: center;
-  background-color: #7796cb;
+  background-color: #006d77;
   padding: 1em;
 `;
