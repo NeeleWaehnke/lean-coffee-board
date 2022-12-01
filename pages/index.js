@@ -2,6 +2,7 @@ import Header from "../components/Header";
 import CardList from "../components/Card-List";
 import Form from "../components/Form";
 import { useState } from "react";
+import styled from "styled-components";
 
 export default function HomePage() {
   const [cards, setCards] = useState([]);
@@ -18,3 +19,7 @@ export default function HomePage() {
     </>
   );
 }
+
+const StyledMain = styled.main`
+  background-color: #a3bcf9;
+`;
