@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { BiPlus } from "react-icons/bi";
 
 export default function Form({ onAddCard }) {
   function handleSubmit(event) {
@@ -32,16 +33,23 @@ export default function Form({ onAddCard }) {
         className="author"
         required
       />
-      <button type="submit">+</button>
+      <button type="submit">
+        <BiPlus />
+      </button>
     </StyledForm>
   );
 }
 
 const StyledForm = styled.form`
+  position: relative;
   input {
     border-radius: 5px;
     border-style: none;
     margin: 2px;
+    background-color: #edf6f9;
+  }
+  input:focus {
+    outline: 2px #f78e69 solid;
   }
   input.topic {
     width: 60%;
@@ -53,10 +61,13 @@ const StyledForm = styled.form`
   }
   button {
     border-radius: 20px;
-    height: 50px;
-    width: 50px;
-    border: 1px solid #7796cb;
-    background-color: #d1d2f9;
-    font-size: 24px;
+    border: none;
+    background-color: #f78e69;
+    font-size: 30px;
+    padding-top: 6px;
+    position: relative;
+    top: 7px;
+    left: 2px;
+    color: white;
   }
 `;

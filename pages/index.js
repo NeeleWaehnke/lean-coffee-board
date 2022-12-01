@@ -2,24 +2,23 @@ import Header from "../components/Header";
 import CardList from "../components/Card-List";
 import Form from "../components/Form";
 import { useState } from "react";
-import styled from "styled-components";
+import { nanoid } from "nanoid";
 
 export default function HomePage() {
   const [cards, setCards] = useState([]);
   function handleAddCard(newCard) {
-    setCards([{ topic, author, ...newCard }, ...cards]);
+    setCards([{ topic, author, id: nanoid(), ...newCard }, ...cards]);
     console.log(cards);
+  }
+  function handleRemoveCard(id) {
+    setCards(cards.filter((card) => card.id !== id));
   }
 
   return (
     <>
       <Header />
-      <CardList cards={cards} />
+      <CardList cards={cards} onRemoveCard={handleRemoveCard} />
       <Form onAddCard={handleAddCard} />
     </>
   );
 }
-
-const StyledMain = styled.main`
-  background-color: #a3bcf9;
-`;
