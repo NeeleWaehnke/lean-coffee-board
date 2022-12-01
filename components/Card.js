@@ -1,8 +1,8 @@
-export default function Card() {
+export default function Card({ author, topic }) {
   return (
     <section>
-      <h3>Text</h3>
-      <p>Name</p>
+      <h3>{topic}</h3>
+      <p>{author}</p>
     </section>
   );
 }

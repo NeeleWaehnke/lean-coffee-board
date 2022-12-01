@@ -1,9 +1,16 @@
 import Card from "./Card";
+import { Fragment } from "react";
 
-export default function CardList() {
+export default function CardList({ cards }) {
   return (
     <>
-      <Card />
+      {cards.map((card) => {
+        return (
+          <Fragment key={card.topic}>
+            <Card topic={card.topic} author={card.author} />
+          </Fragment>
+        );
+      })}
     </>
   );
 }
