@@ -44,18 +44,19 @@ const StyledForm = styled.form`
     margin: 2px;
   }
   input.topic {
-    width: 200px;
+    width: 60%;
     height: 30px;
   }
   input.author {
-    width: 80px;
+    width: 20%;
     height: 30px;
   }
   button {
     border-radius: 20px;
-    height: 30px;
-    width: 30px;
+    height: 50px;
+    width: 50px;
     border: 1px solid #7796cb;
     background-color: #d1d2f9;
+    font-size: 24px;
   }
 `;
