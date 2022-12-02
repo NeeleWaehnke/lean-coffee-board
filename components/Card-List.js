@@ -1,9 +1,9 @@
 import Card from "./Card";
 import { Fragment } from "react";
 
-export default function CardList({ cards, onRemoveCard }) {
+export default function CardList({ cards, onRemoveCard, onEditCard }) {
   return (
-    <>
+    <section>
       {cards.map((card) => {
         return (
           <Fragment key={card.id}>
@@ -12,10 +12,11 @@ export default function CardList({ cards, onRemoveCard }) {
               topic={card.topic}
               author={card.author}
               onRemoveCard={onRemoveCard}
+              onEditCard={onEditCard}
             />
           </Fragment>
         );
       })}
-    </>
+    </section>
   );
 }
