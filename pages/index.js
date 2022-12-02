@@ -2,10 +2,10 @@ import Header from "../components/Header";
 import CardList from "../components/Card-List";
 import Form from "../components/Form";
 import { useState, useEffect } from "react";
-import { nanoid } from "nanoid";
 
 export default function HomePage() {
   const [cards, setCards] = useState([]);
+
   async function handleAddCard(newCard) {
     await fetch(
       "https://lean-coffee-board-api-nextjs.vercel.app/api/questions",
@@ -18,8 +18,6 @@ export default function HomePage() {
       }
     );
     getNotes();
-    //setCards([...cards, { ...newCard }]);
-    console.log(cards);
   }
   async function handleRemoveCard(id) {
     await fetch(
@@ -29,13 +27,12 @@ export default function HomePage() {
       }
     );
     getNotes();
-    //setCards(cards.filter((card) => card.id !== id));
   }
 
-  async function handleEditCard(editCard, id) {
-    //const editCardItem = cards.filter((card) => card.id !== editCard.id);
+  async function handleEditCard(editCard) {
     await fetch(
-      "https://lean-coffee-board-api-nextjs.vercel.app/api/questions/" + id,
+      "https://lean-coffee-board-api-nextjs.vercel.app/api/questions/" +
+        editCard.id,
       {
         method: "PUT",
         headers: {
@@ -45,8 +42,6 @@ export default function HomePage() {
       }
     );
     getNotes();
-
-    //setCards([editCard, ...editCardItem]);
   }
 
   async function getNotes() {
@@ -59,6 +54,7 @@ export default function HomePage() {
   useEffect(() => {
     getNotes();
   }, []);
+
   return (
     <>
       <Header />
