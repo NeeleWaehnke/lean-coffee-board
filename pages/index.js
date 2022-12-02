@@ -14,10 +14,21 @@ export default function HomePage() {
     setCards(cards.filter((card) => card.id !== id));
   }
 
+  function handleEditCard(editCard) {
+    const editCardItem = cards.filter((card) => card.id !== editCard.id);
+    setCards([editCard, ...editCardItem]);
+  }
+
+  console.log(cards);
+
   return (
     <>
       <Header />
-      <CardList cards={cards} onRemoveCard={handleRemoveCard} />
+      <CardList
+        cards={cards}
+        onRemoveCard={handleRemoveCard}
+        onEditCard={handleEditCard}
+      />
       <Form onAddCard={handleAddCard} />
     </>
   );
