@@ -80,6 +80,7 @@ const StyledCard = styled.section`
   display: grid;
   grid-template-columns: 70% 30%;
   grid-template-rows: 1fr auto;
+
   button {
     height: 40px;
     width: 40px;
@@ -98,5 +99,29 @@ const StyledCard = styled.section`
   p {
     grid-column-start: 1;
     grid-row-start: 2;
+  }
+  form {
+    grid-column-start: 1;
+    grid-column-end: span 2;
+    position: relative;
+    padding: 4px 6px 7px 6px;
+  }
+  input.text {
+    grid-column-start: 1;
+    grid-row-start: 1;
+    width: 70%;
+    height: 40%;
+    border-style: none;
+  }
+  input.name {
+    grid-column-start: 1;
+    grid-row-start: 2;
+    width: 70%;
+    height: 40%;
+    border-style: none;
+  }
+  button.edit-save {
+    font-size: 30px;
+    color: #f78e69;
   }
 `;

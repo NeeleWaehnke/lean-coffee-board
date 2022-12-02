@@ -52,7 +52,10 @@ export default function HomePage() {
     setCards(questionList);
   }
   useEffect(() => {
-    getNotes();
+    const interval = setInterval(() => {
+      getNotes();
+    }, 3000);
+    return () => clearInterval(interval);
   }, []);
 
   return (
