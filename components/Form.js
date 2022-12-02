@@ -2,35 +2,36 @@ import styled from "styled-components";
 import { BiPlus } from "react-icons/bi";
 
 export default function Form({ onAddCard }) {
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     const form = event.target.elements;
     const data = {
-      topic: form.topic.value,
-      author: form.author.value,
+      text: form.text.value,
+      name: form.name.value,
     };
+
     onAddCard(data);
     event.target.reset();
   }
 
   return (
     <StyledForm onSubmit={handleSubmit}>
-      <label htmlFor="topic"></label>
+      <label htmlFor="text"></label>
       <input
         type="text"
-        id="topic"
-        name="topic"
-        className="topic"
+        id="text"
+        name="text"
+        className="text"
         placeholder="Type your thoughts here ..."
         required
       />
-      <label htmlFor="author"></label>
+      <label htmlFor="name"></label>
       <input
         type="text"
-        id="author"
-        name="author"
+        id="name"
+        name="name"
         placeholder="Your Name"
-        className="author"
+        className="name"
         required
       />
       <button type="submit">
@@ -42,6 +43,7 @@ export default function Form({ onAddCard }) {
 
 const StyledForm = styled.form`
   position: relative;
+  margin-bottom: 2em;
   input {
     border-radius: 5px;
     border-style: none;
@@ -51,11 +53,11 @@ const StyledForm = styled.form`
   input:focus {
     outline: 2px #f78e69 solid;
   }
-  input.topic {
+  input.text {
     width: 60%;
     height: 30px;
   }
-  input.author {
+  input.name {
     width: 20%;
     height: 30px;
   }

@@ -9,8 +9,8 @@ export default function CardList({ cards, onRemoveCard, onEditCard }) {
           <Fragment key={card.id}>
             <Card
               id={card.id}
-              topic={card.topic}
-              author={card.author}
+              text={card.text}
+              name={card.name}
               onRemoveCard={onRemoveCard}
               onEditCard={onEditCard}
             />
