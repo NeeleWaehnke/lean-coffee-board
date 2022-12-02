@@ -1,25 +1,62 @@
 import Header from "../components/Header";
 import CardList from "../components/Card-List";
 import Form from "../components/Form";
-import { useState } from "react";
-import { nanoid } from "nanoid";
+import { useState, useEffect } from "react";
 
 export default function HomePage() {
   const [cards, setCards] = useState([]);
-  function handleAddCard(newCard) {
-    setCards([{ topic, author, id: nanoid(), ...newCard }, ...cards]);
-    console.log(cards);
+
+  async function handleAddCard(newCard) {
+    await fetch(
+      "https://lean-coffee-board-api-nextjs.vercel.app/api/questions",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newCard),
+      }
+    );
+    getNotes();
   }
-  function handleRemoveCard(id) {
-    setCards(cards.filter((card) => card.id !== id));
+  async function handleRemoveCard(id) {
+    await fetch(
+      "https://lean-coffee-board-api-nextjs.vercel.app/api/questions/" + id,
+      {
+        method: "DELETE",
+      }
+    );
+    getNotes();
   }
 
-  function handleEditCard(editCard) {
-    const editCardItem = cards.filter((card) => card.id !== editCard.id);
-    setCards([editCard, ...editCardItem]);
+  async function handleEditCard(editCard) {
+    await fetch(
+      "https://lean-coffee-board-api-nextjs.vercel.app/api/questions/" +
+        editCard.id,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(editCard),
+      }
+    );
+    getNotes();
   }
 
-  console.log(cards);
+  async function getNotes() {
+    const response = await fetch(
+      "https://lean-coffee-board-api-nextjs.vercel.app/api/questions"
+    );
+    const questionList = await response.json();
+    setCards(questionList);
+  }
+  useEffect(() => {
+    const interval = setInterval(() => {
+      getNotes();
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <>

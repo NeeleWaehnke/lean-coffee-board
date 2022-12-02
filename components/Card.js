@@ -4,15 +4,15 @@ import { BiPencil } from "react-icons/bi";
 import { BiCheck } from "react-icons/bi";
 import { useState } from "react";
 
-export default function Card({ author, topic, onRemoveCard, id, onEditCard }) {
+export default function Card({ name, text, onRemoveCard, id, onEditCard }) {
   const [edit, setEdit] = useState(false);
 
   function handleSubmitEdit(event) {
     event.preventDefault();
     const form = event.target.elements;
     const editData = {
-      topic: form.topic.value,
-      author: form.author.value,
+      text: form.text.value,
+      name: form.name.value,
       id: id,
     };
     onEditCard(editData);
@@ -23,22 +23,22 @@ export default function Card({ author, topic, onRemoveCard, id, onEditCard }) {
     <StyledCard>
       {edit === true ? (
         <form onSubmit={handleSubmitEdit}>
-          <label htmlFor="topic"></label>
+          <label htmlFor="text"></label>
           <input
             type="text"
-            id="topic"
-            name="topic"
-            className="topic"
-            placeholder={topic}
+            id="text"
+            name="text"
+            className="text"
+            placeholder={text}
             required
           />
-          <label htmlFor="author"></label>
+          <label htmlFor="name"></label>
           <input
             type="text"
-            id="author"
-            name="author"
-            placeholder={author}
-            className="author"
+            id="namer"
+            name="name"
+            placeholder={name}
+            className="name"
             required
           />
           <button className="edit-save" type="submit">
@@ -47,8 +47,8 @@ export default function Card({ author, topic, onRemoveCard, id, onEditCard }) {
         </form>
       ) : (
         <>
-          <h3>{topic}</h3>
-          <p>{author}</p>
+          <h3>{text}</h3>
+          <p>{name}</p>
           <button
             className="delete"
             onClick={() => {
@@ -79,7 +79,8 @@ const StyledCard = styled.section`
   text-align: start;
   display: grid;
   grid-template-columns: 70% 30%;
-  grid-template-rows: 1fr 1fr auto;
+  grid-template-rows: 1fr auto;
+
   button {
     height: 40px;
     width: 40px;
@@ -87,7 +88,7 @@ const StyledCard = styled.section`
     padding: 4px 6px 1px 6px;
     grid-column-start: 2;
     justify-self: end;
-    align-self: end;
+    align-self: start;
     border: none;
     background-color: transparent;
     grid-row-start: 2;
@@ -98,5 +99,29 @@ const StyledCard = styled.section`
   p {
     grid-column-start: 1;
     grid-row-start: 2;
+  }
+  form {
+    grid-column-start: 1;
+    grid-column-end: span 2;
+    position: relative;
+    padding: 4px 6px 7px 6px;
+  }
+  input.text {
+    grid-column-start: 1;
+    grid-row-start: 1;
+    width: 70%;
+    height: 40%;
+    border-style: none;
+  }
+  input.name {
+    grid-column-start: 1;
+    grid-row-start: 2;
+    width: 70%;
+    height: 40%;
+    border-style: none;
+  }
+  button.edit-save {
+    font-size: 30px;
+    color: #f78e69;
   }
 `;
