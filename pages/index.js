@@ -7,56 +7,48 @@ export default function HomePage() {
   const [cards, setCards] = useState([]);
 
   async function handleAddCard(newCard) {
-    await fetch(
-      "https://lean-coffee-board-api-nextjs.vercel.app/api/questions",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newCard),
-      }
-    );
+    await fetch("/api/questions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newCard),
+    });
     getNotes();
   }
   async function handleRemoveCard(id) {
-    await fetch(
-      "https://lean-coffee-board-api-nextjs.vercel.app/api/questions/" + id,
-      {
-        method: "DELETE",
-      }
-    );
+    await fetch("/api/questions/" + id, {
+      method: "DELETE",
+    });
     getNotes();
   }
 
   async function handleEditCard(editCard) {
-    await fetch(
-      "https://lean-coffee-board-api-nextjs.vercel.app/api/questions/" +
-        editCard.id,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(editCard),
-      }
-    );
+    await fetch("/api/questions/" + editCard.id, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(editCard),
+    });
     getNotes();
   }
 
   async function getNotes() {
-    const response = await fetch(
-      "https://lean-coffee-board-api-nextjs.vercel.app/api/questions"
-    );
+    const response = await fetch("/api/questions");
     const questionList = await response.json();
     setCards(questionList);
   }
   useEffect(() => {
-    const interval = setInterval(() => {
-      getNotes();
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
+    getNotes();
+  });
+
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     getNotes();
+  //   }, 20000000);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   return (
     <>
