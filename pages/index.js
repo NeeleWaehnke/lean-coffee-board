@@ -41,7 +41,7 @@ export default function HomePage() {
   }
   useEffect(() => {
     getNotes();
-  });
+  }, []);
 
   // useEffect(() => {
   //   const interval = setInterval(() => {
