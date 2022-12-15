@@ -35,7 +35,7 @@ export default function Card({ name, text, onRemoveCard, id, onEditCard }) {
           <label htmlFor="name"></label>
           <input
             type="text"
-            id="namer"
+            id="name"
             name="name"
             placeholder={name}
             className="name"
