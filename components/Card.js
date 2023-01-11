@@ -75,7 +75,7 @@ const StyledCard = styled.section`
   border-radius: 5px;
   padding: 5px;
   margin: 2em;
-  background-color: #edf6f9;
+  background-color: #edf6f5;
   text-align: start;
   display: grid;
   grid-template-columns: 70% 30%;
